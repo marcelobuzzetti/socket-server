@@ -12,7 +12,7 @@ app.get('/oi-mundo', function(req,res){
 });
 app.get('/', function(req,res){
     res.status(200).send("Ok");
-    if(req.query.id) {
+    if(!isNaN(req.query.id)) {
         io.of("/").emit('messages', req.query.id);
     }
 });
