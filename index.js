@@ -10,9 +10,11 @@ const PORT = process.env.PORT
 app.get('/oi-mundo', function(req,res){
     res.status(200).send('Oi Mundo');
 });
-app.get('/:id', function(req,res){
-    res.status(200).send(req.params.id);
-    io.of("/").emit('messages', req.params.id);
+app.get('/', function(req,res){
+    res.status(200).send("Ok");
+    if(req.query.id) {
+        io.of("/").emit('messages', req.query.id);
+    }
 });
 
 io.on('connection', function(socket){
