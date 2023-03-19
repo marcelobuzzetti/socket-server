@@ -9,7 +9,6 @@ const PORT = process.env.PORT
 
 app.get('/oi-mundo', function(req,res){
     res.status(200).send('Oi Mundo');
-    io.of("/").emit('messages', req.query.id);
 });
 app.get('/:id', function(req,res){
     res.status(200).send(req.params.id);
@@ -17,7 +16,7 @@ app.get('/:id', function(req,res){
 });
 
 io.on('connection', function(socket){
-    console.log('O cliente com ip: '+socket.handshake.address+' se conectou');
+    console.log(`O cliente com ip: ${socket.handshake.address} se conectou\nId do cliente ${socket.id}`);
 });
 
 server.listen(PORT, function(){
